@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Module_3
 {
@@ -61,7 +62,16 @@ namespace Module_3
                         Console.Clear();
                         Console.Write("Введите номер: ");
                         string number = Console.ReadLine();
-                        notification.MakeCall(number);
+                        // регулярное выражение чтобы номер соответствовал формату
+                        if (Regex.IsMatch(number, @"^\+\d{10,15}$"))
+                        {
+                            notification.MakeCall(number);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Неверный формат номера. Вводите номер в формате " +
+                                "+1234567890, от 10 до 15 чисел");
+                        }
                         Console.ReadLine();
                         Console.Clear();
                         break;
@@ -69,7 +79,16 @@ namespace Module_3
                         Console.Clear();
                         Console.Write("Введите адрес электронной почты: ");
                         string email = Console.ReadLine();
-                        notification.SendEmail(email);
+                        // Проверяем, что адрес электронной почты соответствует формату
+                        if (Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                        {
+                            notification.SendEmail(email);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Неверный формат адреса электронной почты. " +
+                                "Введите адрес в формате example@example.com");
+                        }
                         Console.ReadLine();
                         Console.Clear();
                         break;
@@ -83,7 +102,6 @@ namespace Module_3
                         break;
                 }
             }
-
             flagBool = true;
         }
     }
