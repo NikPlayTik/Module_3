@@ -50,25 +50,36 @@ namespace Module_3
                 switch (choiceNumber)
                 {
                     case "1":
+                        Console.Clear();
                         Console.Write("Введите сообщение: ");
                         string message = Console.ReadLine();
                         notification.SendMessage(message);
+                        Console.ReadLine();
+                        Console.Clear();
                         break;
                     case "2":
+                        Console.Clear();
                         Console.Write("Введите номер: ");
                         string number = Console.ReadLine();
                         notification.MakeCall(number);
+                        Console.ReadLine();
+                        Console.Clear();
                         break;
                     case "3":
+                        Console.Clear();
                         Console.Write("Введите адрес электронной почты: ");
                         string email = Console.ReadLine();
                         notification.SendEmail(email);
+                        Console.ReadLine();
+                        Console.Clear();
                         break;
                     case "4":
                         flagBool = false;
                         break;
                     default:
                         Console.WriteLine("Неверный выбор");
+                        Console.ReadLine();
+                        Console.Clear();
                         break;
                 }
             }
