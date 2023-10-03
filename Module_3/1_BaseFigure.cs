@@ -42,5 +42,19 @@ namespace Module_3
         }
     }
 
-    
+    public class Triangle : Figure
+    {
+        private double footing;
+        private double height;
+
+        public Triangle(double footing, double height)
+        {
+            this.footing = footing;
+            this.height = height;
+        }
+        public override double CalculatingArea()
+        {
+            return 0.5 * footing * height;
+        }
+    }
 }
