@@ -10,6 +10,53 @@ namespace Module_3
     {
         static void Main(string[] args)
         {
+            while (true)
+            {
+                // меню выбора
+                Console.WriteLine("\t---Меню---" +
+                    "\n1. Создание класса Фигура с использованием делегатов" +
+                    "\n2. Система событий мобильного приложения" +
+                    "\n3. Приложение для управления задачами с использованием делегатов" +
+                    "\n4. Систему фильтрации данных с использованием делегатов" +
+                    "\n5. Приложение для сортировки числовых данных с ввыбором методом сортировки");
+
+                string choiceNumber = Console.ReadLine();
+
+                switch (choiceNumber)
+                {
+                    case "1":
+                        Console.Clear();
+
+                        Console.Clear();
+                        break;
+                    case "2":
+                        Console.Clear();
+
+                        Console.Clear();
+                        break;
+                    case "3":
+                        Console.Clear();
+
+                        Console.Clear();
+                        break;
+                    case "4":
+                        Console.Clear();
+
+                        Console.Clear();
+                        break;
+                    case "5":
+                        Console.Clear();
+
+                        Console.Clear();
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Некорректный выбор. Попробуйте еще раз.");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+                }
+            }
         }
     }
 }
