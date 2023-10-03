@@ -11,6 +11,7 @@ namespace Module_3
         static void Main(string[] args)
         {
             FigureOutput figureOutput = new FigureOutput();
+            Notification notification = new Notification();
 
             while (true)
             {
@@ -33,7 +34,7 @@ namespace Module_3
                         break;
                     case "2":
                         Console.Clear();
-
+                        notification.OutputData();
                         Console.Clear();
                         break;
                     case "3":
