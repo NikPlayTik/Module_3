@@ -62,7 +62,7 @@ namespace Module_3
         public double heightR;
         public double footingT;
         public double heightT;
-
+        
         public bool flagNegative;
 
         public FigureOutput()
@@ -78,30 +78,50 @@ namespace Module_3
                 {      
                     if (radiusC < 0)
                     {
-                        Console.WriteLine("Радиус должен быть положительным числом\n");
-                        continue;
+                        Console.WriteLine("Радиус должен быть положительным числом");
+                        Console.ReadLine();
+                        break;
                     }                    
                 }
                 else
                 {
-                    Console.WriteLine("Радиус должен быть представлен в цифровом виде\n");
-                    continue;
+                    Console.WriteLine("Радиус должен быть представлен в цифровом виде");
+                    Console.ReadLine();
+                    break;
                 }
-                //!!!
+                
                 Console.Write("Введите ширину и высоту прямоугольника: ");
-                if (!double.TryParse(Console.ReadLine(), out widthR) || widthR < 0 ||
-                    !double.TryParse(Console.ReadLine(), out heightR) || heightR < 0)
+                if (double.TryParse(Console.ReadLine(), out widthR) || double.TryParse(Console.ReadLine(), out heightR))
                 {
-                    Console.WriteLine("Ширина и высота должны быть положительными числами. Пожалуйста, введите положительные числа.");
-                    continue;
+                    if (widthR < 0 || heightR < 0)
+                    {
+                        Console.WriteLine("Ширина и высота прямоугольника должна быть положительным числом");
+                        Console.ReadLine();
+                        break;
+                    }
                 }
-
-                Console.Write("Введите основание и высоту треугольника: ");
-                if (!double.TryParse(Console.ReadLine(), out footingT) || footingT < 0 ||
-                    !double.TryParse(Console.ReadLine(), out heightT) || heightT < 0)
+                else
                 {
-                    Console.WriteLine("Основание и высота должны быть положительными числами. Пожалуйста, введите положительные числа.");
-                    continue;
+                    Console.WriteLine("Ширина и высота прямоугольника должна быть в цифровом виде");
+                    Console.ReadLine();
+                    break;
+                }
+                
+                Console.Write("Введите основание и высоту треугольника: ");
+                if (double.TryParse(Console.ReadLine(), out footingT) || double.TryParse(Console.ReadLine(), out heightT))
+                {
+                    if (footingT < 0 || heightT < 0)
+                    {
+                        Console.WriteLine("Основание и высота должны быть положительными числами");
+                        Console.ReadLine();
+                        break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Ширина и высота прямоугольника должна быть в цифровом виде");
+                    Console.ReadLine();
+                    break;
                 }
 
                 Figure circle = new Circle(radiusC); // реализация полиморфизма
