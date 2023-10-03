@@ -83,7 +83,8 @@ namespace Module_3
                         break;
                 }
             }
-                
+
+            flagBool = true;
         }
     }
 }
