@@ -10,6 +10,8 @@ namespace Module_3
     {
         static void Main(string[] args)
         {
+            FigureOutput figureOutput = new FigureOutput();
+
             while (true)
             {
                 // меню выбора
@@ -26,7 +28,7 @@ namespace Module_3
                 {
                     case "1":
                         Console.Clear();
-
+                        figureOutput.OutputData();
                         Console.Clear();
                         break;
                     case "2":

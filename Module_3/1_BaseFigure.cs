@@ -62,30 +62,62 @@ namespace Module_3
         public double heightR;
         public double footingT;
         public double heightT;
+
+        public bool flagNegative;
+
+        public FigureOutput()
+        {
+            flagNegative = true;
+        }
         public void OutputData()
         {
-            Console.Write("Введите радиус для круга: " +
-                "\nВведите ширину и высоту прямоугольника: " +
-                "\nВведите основание и высоту треугольника: ");
-            radiusC = double.Parse(Console.ReadLine());
-            widthR = double.Parse(Console.ReadLine());
-            heightR = double.Parse(Console.ReadLine());
-            footingT = double.Parse(Console.ReadLine());
-            heightT = double.Parse(Console.ReadLine());
-            Figure circle = new Circle(radiusC);
-            Figure rectangle = new Rectangle(widthR, heightR);
-            Figure triangle = new Triangle(footingT, heightT);
+            while (flagNegative)
+            {
+                Console.Write("Введите радиус для круга: ");
+                if (double.TryParse(Console.ReadLine(), out radiusC))
+                {      
+                    if (radiusC < 0)
+                    {
+                        Console.WriteLine("Радиус должен быть положительным числом\n");
+                        continue;
+                    }                    
+                }
+                else
+                {
+                    Console.WriteLine("Радиус должен быть представлен в цифровом виде\n");
+                    continue;
+                }
+                //!!!
+                Console.Write("Введите ширину и высоту прямоугольника: ");
+                if (!double.TryParse(Console.ReadLine(), out widthR) || widthR < 0 ||
+                    !double.TryParse(Console.ReadLine(), out heightR) || heightR < 0)
+                {
+                    Console.WriteLine("Ширина и высота должны быть положительными числами. Пожалуйста, введите положительные числа.");
+                    continue;
+                }
 
-            AreaDelegate circleDelegate = new AreaDelegate(circle.CalculatingArea);
-            AreaDelegate rectangleDelegate = new AreaDelegate(rectangle.CalculatingArea);
-            AreaDelegate triangleDelegate = new AreaDelegate(triangle.CalculatingArea);
+                Console.Write("Введите основание и высоту треугольника: ");
+                if (!double.TryParse(Console.ReadLine(), out footingT) || footingT < 0 ||
+                    !double.TryParse(Console.ReadLine(), out heightT) || heightT < 0)
+                {
+                    Console.WriteLine("Основание и высота должны быть положительными числами. Пожалуйста, введите положительные числа.");
+                    continue;
+                }
 
-            Console.WriteLine($"Площадь круга: {circleDelegate}");
-            Console.WriteLine($"Площадь прямоугольника: {rectangleDelegate}");
-            Console.WriteLine($"Площадь треугольника: {triangleDelegate}");
-            Console.ReadLine();
+                Figure circle = new Circle(radiusC); // реализация полиморфизма
+                Figure rectangle = new Rectangle(widthR, heightR);
+                Figure triangle = new Triangle(footingT, heightT);
+
+                AreaDelegate circleDelegate = new AreaDelegate(circle.CalculatingArea);
+                AreaDelegate rectangleDelegate = new AreaDelegate(rectangle.CalculatingArea);
+                AreaDelegate triangleDelegate = new AreaDelegate(triangle.CalculatingArea);
+
+                Console.WriteLine($"Площадь круга: {circleDelegate.Invoke():F2}");
+                Console.WriteLine($"Площадь прямоугольника: {rectangleDelegate.Invoke():F2}");
+                Console.WriteLine($"Площадь треугольника: {triangleDelegate.Invoke():F2}");
+                Console.ReadLine();
+                flagNegative = false;
+            }
         }
     }
-
-    
 }
