@@ -13,6 +13,7 @@ namespace Module_3
             FigureOutput figureOutput = new FigureOutput();
             Notification notification = new Notification();
             TaskManager taskManager = new TaskManager();
+            Filtered filtered = new Filtered();
 
             while (true)
             {
@@ -45,7 +46,7 @@ namespace Module_3
                         break;
                     case "4":
                         Console.Clear();
-
+                        filtered.OutputData();
                         Console.Clear();
                         break;
                     case "5":
