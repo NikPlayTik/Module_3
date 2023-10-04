@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Module_3
 {
@@ -85,10 +86,15 @@ namespace Module_3
             int[] copy = new int[data.Length];
             Array.Copy(data, copy, data.Length);
 
+            Stopwatch stopwatch = Stopwatch.StartNew();
+
             sortMethod(copy);
+
+            stopwatch.Stop();
 
             Console.WriteLine("Отсортированный массив:");
             Console.WriteLine(string.Join(" ", copy));
+            Console.WriteLine($"Время сортировки: {stopwatch.Elapsed}");
         }
 
         public void OutputData()
@@ -97,29 +103,27 @@ namespace Module_3
             int size = int.Parse(Console.ReadLine());
             int[] numbers = GenerateRandomArray(size);
 
-            Console.WriteLine("Сгенерированный массив:");
+            Console.WriteLine("Сгенерированный массив: ");
             Console.WriteLine(string.Join(" ", numbers));
 
             while (true)
             {
                 Console.WriteLine("Выберите метод сортировки (1 - Сортировка пузырьком, 2 - Быстрая сортировка, 3 - Выход): ");
-                int choice = int.Parse(Console.ReadLine());
+                int choiceNumber = int.Parse(Console.ReadLine());
 
-                if (choice == 1)
+                switch(choiceNumber)
                 {
-                    SortData(numbers, BubbleSort);
-                }
-                else if (choice == 2)
-                {
-                    SortData(numbers, QuickSort);
-                }
-                else if (choice == 3)
-                {
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Некорректный выбор. Попробуйте еще раз.");
+                    case 1:
+                        SortData(numbers, BubbleSort);
+                        break;
+                    case 2:
+                        SortData(numbers, QuickSort);
+                        break;
+                    case 3:
+                        return;
+                    default:
+                        Console.WriteLine("Некорректный выбор");
+                        break;
                 }
             }
         }
