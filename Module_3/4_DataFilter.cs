@@ -56,10 +56,11 @@ namespace Module_3
                         { 
                             Console.Write("Введите дату (дд.мм.гггг): ");
                             inputText = Console.ReadLine();
-                            if (!Regex.IsMatch(inputText, @"^\d{2}\.\d{2}\.\d{4}$"))
+                            if (!Regex.IsMatch(inputText, @"^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.\d{4}$"))
                             {
                                 Console.WriteLine("Некорректный формат даты");
                             }
+
                         }
                         dataList.Add(inputText);
                         break;
@@ -71,7 +72,7 @@ namespace Module_3
                             case 1:
                                 Console.Write("Введите дату для фильтрации: ");
                                 string dateFilter = Console.ReadLine();
-                                if (Regex.IsMatch(inputText, @"^\d{2}\.\d{2}\.\d{4}$"))
+                                if (Regex.IsMatch(inputText, @"^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.\d{4}$"))
                                 {
                                     DataFilter(dataList, FilterDate, dateFilter);
                                 }

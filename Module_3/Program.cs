@@ -14,7 +14,7 @@ namespace Module_3
             Notification notification = new Notification();
             TaskManager taskManager = new TaskManager();
             Filtered filtered = new Filtered();
-
+             
             while (true)
             {
                 // меню выбора
