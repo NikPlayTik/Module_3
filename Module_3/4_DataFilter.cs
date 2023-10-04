@@ -6,7 +6,5 @@ using System.Threading.Tasks;
 
 namespace Module_3
 {
-    internal class _4_DataFilter
-    {
-    }
+
 }

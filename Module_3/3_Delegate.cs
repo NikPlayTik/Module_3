@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Module_3;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,44 +8,93 @@ using System.Xml.Linq;
 
 namespace Module_3
 {
-    public class Task
+    // Создаем делегат для выполнения задач
+    delegate void TaskDelegate(string taskName);
+    class TaskManager
     {
-        public string Description;
-        public Action TaskDelegate;
-    }
+        public event TaskDelegate TaskExecuted;
+        private List<Tuple<string, TaskDelegate>> tasks = new List<Tuple<string, TaskDelegate>>();
 
-    public class TaskManager
-    {
-        private List<Task> tasks = new List<Task>();
-
-        public void AddTask(string description, Action taskDelegate)
+        // Добавление задачи и делегата для выполнения
+        public void AddTask(string taskName, TaskDelegate taskDelegate)
         {
-            tasks.Add(new Task
-            {
-                Description = description,
-                TaskDelegate = taskDelegate
-            });
+            tasks.Add(new Tuple<string, TaskDelegate>(taskName, taskDelegate));
+            Console.WriteLine($"Задача добавлена: {taskName}");
         }
 
+        // Выполнение всех задач
         public void ExecuteTasks()
         {
             foreach (var task in tasks)
             {
-                Console.WriteLine($"Выполняется задача: {task.Description}");
-                task.TaskDelegate();
+                TaskDelegate taskDelegate = task.Item2;
+                taskDelegate.Invoke(task.Item1);
             }
+        }
+
+        public void SendNotification(string taskName)
+        {
+            Console.WriteLine($"Отправка уведомления для задачи: {taskName}");
+        }
+
+        public void LogToJournal(string taskName)
+        {
+            Console.WriteLine($"Запись в журнал для задачи: {taskName}");
         }
 
         public void Output()
         {
-            TaskManager taskManager = new TaskManager();
+            while (true)
+            {
+                Console.WriteLine("Выберите действие:");
+                Console.WriteLine("1. Добавить задачу");
+                Console.WriteLine("2. Выполнить задачи");
+                Console.WriteLine("3. Выход");
 
-            taskManager.AddTask("Отправить уведомление", () => Console.WriteLine("Уведомление отправлено!"));
-            taskManager.AddTask("Запись в журнал", () => Console.WriteLine("Запись в журнал выполнена!"));
+                string choiceNumber = Console.ReadLine();
 
-            taskManager.ExecuteTasks();
+                switch (choiceNumber)
+                {
+                    case "1":
+                        Console.Write("Введите название задачи: ");
+                        string taskName = Console.ReadLine();
+                        Console.WriteLine("Выберите действие для задачи:");
+                        Console.WriteLine("1. Отправить уведомление");
+                        Console.WriteLine("2. Записать в журнал");
+                        Console.WriteLine("3. Назад");
 
-            Console.ReadLine();
+                        string actionChoice = Console.ReadLine();
+                        TaskDelegate taskDelegate = null;
+
+                        // Выбор события
+                        switch (actionChoice)
+                        {
+                            case "1":
+                                taskDelegate = SendNotification;
+                                break;
+                            case "2":
+                                taskDelegate = LogToJournal;
+                                break;
+                            default:
+                                Console.WriteLine("Некорректный выбор действия");
+                                break;
+                        }
+
+                        if (taskDelegate != null)
+                        {
+                            AddTask(taskName, taskDelegate);
+                        }
+                        break;
+                    case "2":
+                        ExecuteTasks();
+                        break;
+                    case "3":
+                        return;
+                    default:
+                        Console.WriteLine("Некорректный выбор действия");
+                        break;
+                }
+            }
         }
     }
 }
