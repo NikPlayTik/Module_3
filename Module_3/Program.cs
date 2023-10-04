@@ -12,6 +12,7 @@ namespace Module_3
         {
             FigureOutput figureOutput = new FigureOutput();
             Notification notification = new Notification();
+            TaskManager taskManager = new TaskManager();
 
             while (true)
             {
@@ -39,7 +40,7 @@ namespace Module_3
                         break;
                     case "3":
                         Console.Clear();
-
+                        taskManager.Output();
                         Console.Clear();
                         break;
                     case "4":
