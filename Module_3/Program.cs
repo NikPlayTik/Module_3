@@ -14,7 +14,8 @@ namespace Module_3
             Notification notification = new Notification();
             TaskManager taskManager = new TaskManager();
             Filtered filtered = new Filtered();
-             
+            Sort sort = new Sort();
+
             while (true)
             {
                 // меню выбора
@@ -51,7 +52,7 @@ namespace Module_3
                         break;
                     case "5":
                         Console.Clear();
-
+                        sort.OutputData();
                         Console.Clear();
                         break;
                     default:
