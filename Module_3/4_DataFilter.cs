@@ -19,17 +19,17 @@ namespace Module_3
         }
 
         // метод для фильтрации данных по дате
-        private bool FilterByDate(string dataItem, string filter)
+        private bool FilterDate(string dataItem, string filter)
         {
             return dataItem.Contains(filter);
         }
         // метод для фильтрации данных по ключевым словам
-        private bool FilterByKeyword(string dataItem, string filter)
+        private bool FilterKeyword(string dataItem, string filter)
         {
             return dataItem.Contains(filter);
         }
         // метод для применения фильтра к данным с использованием делегата
-        private void FilterData(List<string> dataList, DataFilterDelegate filterDelegate, string filter)
+        private void DataFilter(List<string> dataList, DataFilterDelegate filterDelegate, string filter)
         {
             var filteredData = dataList.Where(item => filterDelegate(item, filter)).ToList();
 
@@ -73,7 +73,7 @@ namespace Module_3
                                 string dateFilter = Console.ReadLine();
                                 if (Regex.IsMatch(inputText, @"^\d{2}\.\d{2}\.\d{4}$"))
                                 {
-                                    FilterData(dataList, FilterByDate, dateFilter);
+                                    DataFilter(dataList, FilterDate, dateFilter);
                                 }
                                 else
                                 {
@@ -83,7 +83,7 @@ namespace Module_3
                             case 2:
                                 Console.Write("Введите ключевое слово для фильтрации: ");
                                 string keywordFilter = Console.ReadLine();
-                                FilterData(dataList, FilterByKeyword, keywordFilter);
+                                DataFilter(dataList, FilterKeyword, keywordFilter);
                                 break;
                             default:
                                 Console.WriteLine("Некорректный выбор");
