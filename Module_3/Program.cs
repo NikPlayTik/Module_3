@@ -10,7 +10,8 @@ namespace Module_3
     {
         static void Main(string[] args)
         {
-            FigureOutput figureOutput = new FigureOutput();
+            // обьекты класса
+            FigureOutput figureOutput = new FigureOutput(); 
             Notification notification = new Notification();
             TaskManager taskManager = new TaskManager();
             Filtered filtered = new Filtered();

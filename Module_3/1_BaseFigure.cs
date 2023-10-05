@@ -91,14 +91,18 @@ namespace Module_3
                 }
                 
                 Console.Write("Введите ширину и высоту прямоугольника: ");
-                if (double.TryParse(Console.ReadLine(), out widthR) || double.TryParse(Console.ReadLine(), out heightR))
+                if (double.TryParse(Console.ReadLine(), out widthR))
                 {
-                    if (widthR < 0 || heightR < 0)
+                    if (double.TryParse(Console.ReadLine(), out heightR))
                     {
-                        Console.WriteLine("Ширина и высота прямоугольника должна быть положительным числом");
-                        Console.ReadLine();
-                        break;
+                        if (widthR < 0 || heightR < 0)
+                        {
+                            Console.WriteLine("Ширина и высота прямоугольника должна быть положительным числом");
+                            Console.ReadLine();
+                            break;
+                        }
                     }
+                    
                 }
                 else
                 {
@@ -108,14 +112,17 @@ namespace Module_3
                 }
                 
                 Console.Write("Введите основание и высоту треугольника: ");
-                if (double.TryParse(Console.ReadLine(), out footingT) || double.TryParse(Console.ReadLine(), out heightT))
+                if (double.TryParse(Console.ReadLine(), out footingT))
                 {
-                    if (footingT < 0 || heightT < 0)
+                    if (double.TryParse(Console.ReadLine(), out heightT))
                     {
-                        Console.WriteLine("Основание и высота должны быть положительными числами");
-                        Console.ReadLine();
-                        break;
-                    }
+                        if (footingT < 0 || heightT < 0)
+                        {
+                            Console.WriteLine("Основание и высота должны быть положительными числами");
+                            Console.ReadLine();
+                            break;
+                        }
+                    }            
                 }
                 else
                 {
